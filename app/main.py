@@ -1,6 +1,11 @@
 import pygame
 import skfuzzy
 
+WIDTH = 800
+HEIGHT = 600
+
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+
 
 def main_loop():
     run = True
