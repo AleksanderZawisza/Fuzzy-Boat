@@ -4,9 +4,9 @@ import pygame
 def handle_keystroke_event(event, boat):
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            boat.rudder += 1
+            boat.rudder += 2
         if event.key == pygame.K_RIGHT:
-            boat.rudder += -1
+            boat.rudder += -2
         if event.key == pygame.K_UP:
             boat.vel += 1
         if event.key == pygame.K_DOWN:

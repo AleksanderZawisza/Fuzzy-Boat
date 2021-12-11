@@ -1,5 +1,5 @@
 import pygame.display
-from math import pi, sin, cos, radians
+from math import pi, sin, cos, radians, copysign
 
 
 class Boat:
@@ -41,7 +41,7 @@ class Boat:
             self.pos_y = max_height
 
     def move(self):
-        self.turn += self.rudder / 10
+        self.turn += copysign(self.rudder ** 2, self.rudder) / 200
 
         if self.turn > 50:
             self.turn = 50
@@ -53,7 +53,7 @@ class Boat:
         if self.vel == 0 and self.turn < 2:
             self.turn = 0
 
-        self.heading += self.turn / ((self.vel + 1) * 5)
+        self.heading += self.turn / ((self.vel + 2) * 4)
         self.turn = self.turn * 0.99
 
         self.pos_x = self.pos_x + self.vel * cos(radians(self.heading)) / 10
