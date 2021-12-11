@@ -39,11 +39,12 @@ def calculate_goal_angle(boat, goal_pos):
 
     target = angle - boat.heading
     target = target % 360
-    if target>=180: target = target - 360
+    if target >= 180: target = target - 360
 
     target = -1 * target
 
     return target
+
 
 def calculate_goal_distance(boat, goal_pos):
     x1 = boat.pos_x
@@ -52,6 +53,13 @@ def calculate_goal_distance(boat, goal_pos):
     y2 = goal_pos[1]
 
     dist = ((((x2 - x1) ** 2) + ((y2 - y1) ** 2)) ** 0.5)
-    return
+    return dist
 
 
+def adjust_velocity(boat, dist):
+    if dist > 400:
+        boat.vel = 20
+    elif dist > 10:
+        boat.vel = round(dist / 20, 0)
+    else:
+        boat.vel = 0
