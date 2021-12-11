@@ -1,6 +1,8 @@
 import pygame
 from utils import rotate_pivot
 from math import cos, sin, radians, pi
+import math
+import numpy as np
 
 
 def draw_all(screen, boat, goal_pos=None, goal_angle=None):
