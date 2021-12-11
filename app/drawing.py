@@ -2,11 +2,11 @@ import pygame
 from utils import rotate_pivot
 
 
-def draw_all(screen, boat, alpha_surf):
+def draw_all(screen, boat):
     draw_background(screen)
-    draw_trail(alpha_surf, boat)
-    alpha_surf.fill((255, 255, 255, 244), special_flags=pygame.BLEND_RGBA_MULT)
-    screen.blit(alpha_surf, (0, 0))
+    # draw_trail(alpha_surf, boat)
+    # alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
+    # screen.blit(alpha_surf, (0, 0))
     draw_boat(screen, boat)
     draw_info(screen, boat)
 
