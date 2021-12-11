@@ -45,4 +45,13 @@ def calculate_goal_angle(boat, goal_pos):
 
     return target
 
+def calculate_goal_distance(boat, goal_pos):
+    x1 = boat.pos_x
+    y1 = boat.pos_y
+    x2 = goal_pos[0]
+    y2 = goal_pos[1]
+
+    dist = ((((x2 - x1) ** 2) + ((y2 - y1) ** 2)) ** 0.5)
+    return
+
 

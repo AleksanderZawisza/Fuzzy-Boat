@@ -1,8 +1,8 @@
 import pygame
 from drawing import draw_all, draw_goal
 from boat import Boat
-from utils import handle_keystroke_event, calculate_goal_angle
-
+from utils import handle_keystroke_event, calculate_goal_angle, calculate_goal_distance
+from driver import BoatDriver
 
 def main_loop():
     run = True
@@ -19,6 +19,8 @@ def main_loop():
     boat = Boat(info.current_w / 2, info.current_h / 2)
     goal_pos = None
     goal_angle = None
+    driver = BoatDriver()
+
 
     while run:
         boat.update()
@@ -31,13 +33,16 @@ def main_loop():
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:  # left click
                     goal_pos = pygame.mouse.get_pos()
-                    print(goal_pos)
                 if event.button == 3:  # right click
                     goal_pos = None
                     goal_angle = None
 
         if goal_pos:
             goal_angle = calculate_goal_angle(boat, goal_pos)
+            dist = calculate_goal_distance(boat, goal_pos)
+            # change velocity
+            change = driver.rudder_change(goal_angle, -1*boat.turn)
+            boat.rudder -= change
 
         pygame.display.update()
         clock.tick(100)
