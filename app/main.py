@@ -1,19 +1,31 @@
 import pygame
-import skfuzzy
-
-WIDTH = 800
-HEIGHT = 600
-
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+from drawing import draw_all
+from boat import Boat
+from utils import handle_keystroke_event
 
 
 def main_loop():
     run = True
 
+    pygame.init()
+    clock = pygame.time.Clock()
+    size = (1024, 768)
+    screen = pygame.display.set_mode(size, pygame.RESIZABLE)
+    # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    info = pygame.display.Info()
+    # print(info)
+    boat = Boat(info.current_w / 2, info.current_h / 2)
+
     while run:
+        boat.update()
+        draw_all(screen, boat)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            handle_keystroke_event(event, boat)
+
+        pygame.display.update()
+        clock.tick(100)
 
     pygame.quit()
 
