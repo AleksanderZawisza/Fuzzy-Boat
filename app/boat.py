@@ -17,13 +17,16 @@ class Boat:
     def update(self):
         self.heading = self.heading % 360
 
-        if self.rudder > 20:
-            self.rudder = 20
-        elif self.rudder < -20:
-            self.rudder = -20
+        max_rudder = 50
+        max_vel = 20
 
-        if self.vel > 20:
-            self.vel = 20
+        if self.rudder > max_rudder:
+            self.rudder = max_rudder
+        elif self.rudder < -max_rudder:
+            self.rudder = -max_rudder
+
+        if self.vel > max_vel:
+            self.vel = max_vel
         elif self.vel < 0:
             self.vel = 0
 
@@ -54,7 +57,7 @@ class Boat:
             self.turn = 0
 
         self.heading += self.turn / ((self.vel + 9) * 5)
-        self.turn = self.turn * 0.99
+        self.turn = self.turn * 0.95
 
         self.pos_x = self.pos_x + self.vel * cos(radians(self.heading)) / 10
         self.pos_y = self.pos_y - self.vel * sin(radians(self.heading)) / 10
