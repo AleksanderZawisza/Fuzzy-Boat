@@ -29,10 +29,10 @@ def main_loop():
             handle_keystroke_event(event, boat)
 
             if event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1: #left click
+                if event.button == 1:  # left click
                     goal_pos = pygame.mouse.get_pos()
                     print(goal_pos)
-                if event.button == 3: #right click
+                if event.button == 3:  # right click
                     goal_pos = None
                     goal_angle = None
 

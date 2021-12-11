@@ -15,7 +15,6 @@ def draw_all(screen, boat, goal_pos=None, goal_angle=None):
         draw_goal(screen, goal_pos)
 
 
-
 def draw_rudder(screen, boat):
     rudder_origin = (boat.pos_x - boat.length / 2.0 * cos(radians(boat.heading) * (-1)),
                      boat.pos_y - boat.length / 2.0 * sin(radians(boat.heading) * (-1)))
@@ -59,6 +58,7 @@ def draw_trail(alpha_surf, boat):
     splash_img, rect = rotate_pivot(splash_img, boat.heading, (boat.pos_x, boat.pos_y))
     alpha_surf.blit(splash_img, rect)
 
+
 def draw_goal(screen, goal_pos):
     # flag_img = pygame.image.load('assets/flag.png')
     # flag_size = 40
@@ -78,10 +78,10 @@ def draw_info(screen, boat, goal_angle):
     text_5 = font.render("X: " + str(boat.pos_x), True, COLOR)
     text_6 = font.render("Y: " + str(boat.pos_y), True, COLOR)
     text_7 = font.render("Goal angle: " + str(goal_angle), True, COLOR)
-    screen.blit(text, (60, 20))
-    screen.blit(text_2, (60, 40))
-    screen.blit(text_3, (60, 60))
-    screen.blit(text_4, (60, 80))
-    screen.blit(text_5, (60, 100))
-    screen.blit(text_6, (60, 120))
-    screen.blit(text_7, (60, 140))
+    screen.blit(text, (40, 20))
+    screen.blit(text_2, (40, 40))
+    screen.blit(text_3, (40, 60))
+    screen.blit(text_4, (40, 80))
+    screen.blit(text_5, (40, 100))
+    screen.blit(text_6, (40, 120))
+    screen.blit(text_7, (40, 140))

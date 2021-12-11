@@ -3,13 +3,16 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 import matplotlib.pyplot as plt
 
+
 class BoatDriver:
     def __init__(self, mom=False):
         des_dir = ctrl.Antecedent(np.arange(-180, 181, 1), 'desired direction')
         turn = ctrl.Antecedent(np.arange(-50, 51, 1), 'turn')
-        if mom: #mean of maximum czyli zawsze wartosci ze srodku najwiekszego wyniku ktory wychodzi, mniej wartosci ale pewnie bardziej stabilne
+        if mom:
+            # mean of maximum czyli zawsze wartosci ze srodku najwiekszego wyniku ktory wychodzi,
+            # mniej wartosci ale pewnie bardziej stabilne
             defuzzify_method = 'mom'
-        else: # wiecej wartosci
+        else:  # wiecej wartosci
             defuzzify_method = 'centroid'
         rudd_chng = ctrl.Consequent(np.arange(-20, 21, 1), 'rudder change', defuzzify_method=defuzzify_method)
 
@@ -53,8 +56,6 @@ class BoatDriver:
         self.rudd_chng = rudd_chng
         self.steering_ctrl = ctrl.ControlSystem(rules)
 
-
-
     def rudder_change(self, desired_direction, turn, visualization=False):
         steering = ctrl.ControlSystemSimulation(self.steering_ctrl)
         steering.input['desired direction'] = desired_direction
@@ -75,8 +76,3 @@ if __name__ == "__main__":
     turn = -5
     out = driver.rudder_change(desired_direction, turn, True)
     print(out)
-
-
-
-
-
