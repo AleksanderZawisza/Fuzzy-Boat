@@ -36,8 +36,8 @@ def main_loop():
                     goal_pos = None
                     goal_angle = None
 
-            if goal_pos:
-                goal_angle = calculate_goal_angle(boat, goal_pos)
+        if goal_pos:
+            goal_angle = calculate_goal_angle(boat, goal_pos)
 
         pygame.display.update()
         clock.tick(100)
