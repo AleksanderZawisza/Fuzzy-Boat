@@ -1,7 +1,7 @@
 import pygame
-from drawing import draw_all
+from drawing import draw_all, draw_goal
 from boat import Boat
-from utils import handle_keystroke_event
+from utils import handle_keystroke_event, calculate_goal_angle
 
 
 def main_loop():
@@ -17,14 +17,25 @@ def main_loop():
     info = pygame.display.Info()
     # print(info)
     boat = Boat(info.current_w / 2, info.current_h / 2)
+    goal_pos = None
+    goal_angle = None
 
     while run:
         boat.update()
-        draw_all(screen, boat)
+        draw_all(screen, boat, goal_pos, goal_angle)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             handle_keystroke_event(event, boat)
+
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1: #left click
+                    goal_pos = pygame.mouse.get_pos()
+                    goal_angle = calculate_goal_angle(boat, goal_pos)
+                    print(goal_pos)
+                if event.button == 3: #right click
+                    goal_pos = None
+                    goal_angle = None
 
         pygame.display.update()
         clock.tick(100)

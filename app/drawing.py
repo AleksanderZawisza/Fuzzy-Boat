@@ -3,14 +3,17 @@ from utils import rotate_pivot
 from math import cos, sin, radians, pi
 
 
-def draw_all(screen, boat):
+def draw_all(screen, boat, goal_pos=None, goal_angle=None):
     draw_background(screen)
     # draw_trail(alpha_surf, boat)
     # alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
     # screen.blit(alpha_surf, (0, 0))
     draw_boat(screen, boat)
     draw_rudder(screen, boat)
-    draw_info(screen, boat)
+    draw_info(screen, boat, goal_angle)
+    if goal_pos:
+        draw_goal(screen, goal_pos)
+
 
 
 def draw_rudder(screen, boat):
@@ -56,12 +59,29 @@ def draw_trail(alpha_surf, boat):
     splash_img, rect = rotate_pivot(splash_img, boat.heading, (boat.pos_x, boat.pos_y))
     alpha_surf.blit(splash_img, rect)
 
+def draw_goal(screen, goal_pos):
+    # flag_img = pygame.image.load('assets/flag.png')
+    # flag_size = 40
+    # flag_img = pygame.transform.smoothscale(flag_img, (flag_size, flag_size*1.25))
+    # screen.blit(flag_img, (goal_pos[0]-flag_size//2, goal_pos[1]-flag_size*1.25//2))
 
-def draw_info(screen, boat):
+    pygame.draw.circle(screen, (255, 0, 0), goal_pos, 5)
+
+
+def draw_info(screen, boat, goal_angle):
+    COLOR = (255, 255, 255)
     font = pygame.font.SysFont("monospace", 18, bold=True)
-    text = font.render("Velocity: " + str(boat.vel), True, 'white')
-    text_2 = font.render("Turn: " + str(round(boat.turn, 1)), True, 'white')
-    text_3 = font.render("Rudder: " + str(boat.rudder), True, 'white')
-    screen.blit(text, (60, 30))
-    screen.blit(text_2, (60, 50))
-    screen.blit(text_3, (60, 70))
+    text = font.render("Velocity: " + str(boat.vel), True, COLOR)
+    text_2 = font.render("Turn: " + str(boat.turn), True, COLOR)
+    text_3 = font.render("Rudder: " + str(boat.rudder), True, COLOR)
+    text_4 = font.render("Heading: " + str(boat.heading), True, COLOR)
+    text_5 = font.render("X: " + str(boat.pos_x), True, COLOR)
+    text_6 = font.render("Y: " + str(boat.pos_y), True, COLOR)
+    text_7 = font.render("Goal angle: " + str(goal_angle), True, COLOR)
+    screen.blit(text, (60, 20))
+    screen.blit(text_2, (60, 40))
+    screen.blit(text_3, (60, 60))
+    screen.blit(text_4, (60, 80))
+    screen.blit(text_5, (60, 100))
+    screen.blit(text_6, (60, 120))
+    screen.blit(text_7, (60, 140))
