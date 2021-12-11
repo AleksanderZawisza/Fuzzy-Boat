@@ -31,11 +31,13 @@ def main_loop():
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1: #left click
                     goal_pos = pygame.mouse.get_pos()
-                    goal_angle = calculate_goal_angle(boat, goal_pos)
                     print(goal_pos)
                 if event.button == 3: #right click
                     goal_pos = None
                     goal_angle = None
+
+            if goal_pos:
+                goal_angle = calculate_goal_angle(boat, goal_pos)
 
         pygame.display.update()
         clock.tick(100)
