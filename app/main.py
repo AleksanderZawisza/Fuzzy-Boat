@@ -9,6 +9,7 @@ def main_loop():
 
     pygame.init()
     clock = pygame.time.Clock()
+    pygame.key.set_repeat(100)
     size = (1024, 768)
     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
     # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
