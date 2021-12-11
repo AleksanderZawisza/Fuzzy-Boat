@@ -22,8 +22,8 @@ class Boat:
         elif self.rudder < -20:
             self.rudder = -20
 
-        if self.vel > 10:
-            self.vel = 10
+        if self.vel > 20:
+            self.vel = 20
         elif self.vel < 0:
             self.vel = 0
 
@@ -48,12 +48,12 @@ class Boat:
         elif self.turn < -50:
             self.turn = -50
 
-        self.turn = self.turn * (self.vel / 20 + 0.5)
+        self.turn = self.turn * (self.vel / 200 + 0.90)
 
-        if self.vel == 0 and self.turn < 2:
+        if self.vel == 0 and abs(self.turn) < 20:
             self.turn = 0
 
-        self.heading += self.turn / ((self.vel + 2) * 4)
+        self.heading += self.turn / ((self.vel + 9) * 5)
         self.turn = self.turn * 0.99
 
         self.pos_x = self.pos_x + self.vel * cos(radians(self.heading)) / 10
