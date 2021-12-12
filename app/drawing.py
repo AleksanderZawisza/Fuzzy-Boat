@@ -37,7 +37,7 @@ def draw_background(screen):
     water_img = pygame.transform.scale(water_img, (img_width, img_height))
     i = 0
     j = 0
-    # screen.fill((0, 0, 0))
+    screen.fill((0, 0, 0))
     while i < width:
         while j < height:
             screen.blit(water_img, (i, j))
@@ -69,8 +69,6 @@ def draw_goal(screen, goal_pos):
     # flag_img = pygame.transform.smoothscale(flag_img, (flag_size, flag_size*1.25))
     # screen.blit(flag_img, (goal_pos[0]-flag_size//2, goal_pos[1]-flag_size*1.25//2))
 
-    pygame.draw.circle(screen, (255, 0, 0), goal_pos, 10)
-    pygame.draw.circle(screen, (255, 255, 255), goal_pos, 8)
     pygame.draw.circle(screen, (255, 0, 0), goal_pos, 6)
     pygame.draw.circle(screen, (255, 255, 255), goal_pos, 4)
     pygame.draw.circle(screen, (255, 0, 0), goal_pos, 2)
