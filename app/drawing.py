@@ -1,8 +1,6 @@
 import pygame
 from utils import rotate_pivot
-from math import cos, sin, radians, pi
-import math
-import numpy as np
+from math import cos, sin, radians
 
 
 def draw_all(screen, boat, alpha_surf, goal_pos=None, goal_angle=None, manual_goal_pos=None):
@@ -62,11 +60,17 @@ def draw_trail(alpha_surf, boat):
     # splash_img, rect = rotate_pivot(splash_img, boat.heading, (boat.pos_x, boat.pos_y))
     # alpha_surf.blit(splash_img, rect)
 
-    trail_left = (boat.pos_x - boat.length / 2.2 * cos(radians(boat.heading) * (-1)) - boat.width / 2.5 * sin(radians(boat.heading)),
-                  boat.pos_y - boat.length / 2.2 * sin(radians(boat.heading) * (-1)) - boat.width / 2.5 * cos(radians(boat.heading)))
+    trail_left = (
+        boat.pos_x - boat.length / 2.2 * cos(radians(boat.heading) * (-1)) - boat.width / 2.5 * sin(
+            radians(boat.heading)),
+        boat.pos_y - boat.length / 2.2 * sin(radians(boat.heading) * (-1)) - boat.width / 2.5 * cos(
+            radians(boat.heading)))
 
-    trail_right = (boat.pos_x - boat.length / 2.2 * cos(radians(boat.heading) * (-1)) + boat.width / 2.5 * sin(radians(boat.heading)),
-                   boat.pos_y - boat.length / 2.2 * sin(radians(boat.heading) * (-1)) + boat.width / 2.5 * cos(radians(boat.heading)))
+    trail_right = (
+        boat.pos_x - boat.length / 2.2 * cos(radians(boat.heading) * (-1)) + boat.width / 2.5 * sin(
+            radians(boat.heading)),
+        boat.pos_y - boat.length / 2.2 * sin(radians(boat.heading) * (-1)) + boat.width / 2.5 * cos(
+            radians(boat.heading)))
 
     pygame.draw.circle(alpha_surf, (255, 255, 255), trail_left, 1.5)
     pygame.draw.circle(alpha_surf, (255, 255, 255), trail_right, 1.5)
@@ -81,7 +85,6 @@ def draw_goal(screen, goal_pos):
     pygame.draw.circle(screen, (255, 0, 0), goal_pos, 6)
     pygame.draw.circle(screen, (255, 255, 255), goal_pos, 4)
     pygame.draw.circle(screen, (255, 0, 0), goal_pos, 2)
-
 
 
 def draw_info(screen, boat, goal_angle):

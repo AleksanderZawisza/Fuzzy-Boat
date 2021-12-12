@@ -1,5 +1,5 @@
 import pygame.display
-from math import pi, sin, cos, radians, copysign
+from math import sin, cos, radians, copysign
 
 
 class Boat:

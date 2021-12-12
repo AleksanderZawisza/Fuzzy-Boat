@@ -1,5 +1,5 @@
 import pygame
-from drawing import draw_all, draw_goal
+from drawing import draw_all
 from boat import Boat
 from utils import handle_keystroke_event, calculate_goal_angle, calculate_goal_distance, adjust_velocity
 from driver import BoatDriver
@@ -57,7 +57,7 @@ def main_loop():
 
         pygame.display.update()
         clock.tick(100)
-        print(clock.get_fps())
+        # print(clock.get_fps())
 
     pygame.quit()
 

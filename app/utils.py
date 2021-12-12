@@ -44,7 +44,8 @@ def calculate_goal_angle(boat, goal_pos):
 
     target = angle - boat.heading
     target = target % 360
-    if target >= 180: target = target - 360
+    if target >= 180:
+        target = target - 360
 
     target = -1 * target
 
