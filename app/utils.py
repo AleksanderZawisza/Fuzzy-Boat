@@ -68,3 +68,9 @@ def adjust_velocity(boat, dist, angle):
         boat.vel = min(round((dist ** 0.5 / 2) * (0.2 + 1 - (abs(angle) + 1) / 163), 0) + 1, 20)
     else:
         boat.vel = 0
+
+def adjust_fuzzy_velocity(boat, dist, velocity):
+    if (dist > 10):
+        boat.vel = velocity
+    else:
+        boat.vel = 0
