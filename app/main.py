@@ -52,8 +52,8 @@ def main_loop():
             boat.rudder -= max(min(change, 2), -2)  # plynnejsze obracanie sie steru
 
         pygame.display.update()
-        clock.tick(60)
-        # print(clock.get_fps())
+        clock.tick(100)
+        print(clock.get_fps())
 
     pygame.quit()
 
