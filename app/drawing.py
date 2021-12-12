@@ -5,11 +5,11 @@ import math
 import numpy as np
 
 
-def draw_all(screen, boat, goal_pos=None, goal_angle=None, manual_goal_pos=None):
+def draw_all(screen, boat, alpha_surf, goal_pos=None, goal_angle=None, manual_goal_pos=None):
     draw_background(screen)
-    # draw_trail(alpha_surf, boat)
-    # alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
-    # screen.blit(alpha_surf, (0, 0))
+    draw_trail(alpha_surf, boat)
+    alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
+    screen.blit(alpha_surf, (0, 0))
     draw_boat(screen, boat)
     draw_rudder(screen, boat)
     draw_info(screen, boat, goal_angle)
@@ -56,11 +56,20 @@ def draw_boat(screen, boat):
 
 
 def draw_trail(alpha_surf, boat):
-    splash_img = pygame.image.load('assets/halftrail.png')
-    splash_img = pygame.transform.smoothscale(splash_img, (boat.length * 1.2, boat.width * 1.5))
+    # splash_img = pygame.image.load('assets/halftrail.png')
+    # splash_img = pygame.transform.smoothscale(splash_img, (boat.length * 1.2, boat.width * 1.5))
+    #
+    # splash_img, rect = rotate_pivot(splash_img, boat.heading, (boat.pos_x, boat.pos_y))
+    # alpha_surf.blit(splash_img, rect)
 
-    splash_img, rect = rotate_pivot(splash_img, boat.heading, (boat.pos_x, boat.pos_y))
-    alpha_surf.blit(splash_img, rect)
+    trail_left = (boat.pos_x - boat.length / 2.2 * cos(radians(boat.heading) * (-1)) - boat.width / 2.5 * sin(radians(boat.heading)),
+                  boat.pos_y - boat.length / 2.2 * sin(radians(boat.heading) * (-1)) - boat.width / 2.5 * cos(radians(boat.heading)))
+
+    trail_right = (boat.pos_x - boat.length / 2.2 * cos(radians(boat.heading) * (-1)) + boat.width / 2.5 * sin(radians(boat.heading)),
+                   boat.pos_y - boat.length / 2.2 * sin(radians(boat.heading) * (-1)) + boat.width / 2.5 * cos(radians(boat.heading)))
+
+    pygame.draw.circle(alpha_surf, (255, 255, 255), trail_left, 1.5)
+    pygame.draw.circle(alpha_surf, (255, 255, 255), trail_right, 1.5)
 
 
 def draw_goal(screen, goal_pos):

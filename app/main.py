@@ -15,7 +15,7 @@ def main_loop():
     size = (1024, 768)
     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
     # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    # alpha_surf = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+    alpha_surf = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
     info = pygame.display.Info()
     # print(info)
     boat = Boat(info.current_w / 2, info.current_h / 2)
@@ -26,11 +26,14 @@ def main_loop():
 
     while run:
         boat.update()
-        draw_all(screen, boat, goal_pos, goal_angle, manual_goal_pos)
+        draw_all(screen, boat, alpha_surf, goal_pos, goal_angle, manual_goal_pos)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             handle_keystroke_event(event, boat)
+
+            if event.type == pygame.VIDEORESIZE:
+                alpha_surf = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:  # left click
@@ -53,7 +56,7 @@ def main_loop():
 
         pygame.display.update()
         clock.tick(100)
-        # print(clock.get_fps())
+        print(clock.get_fps())
 
     pygame.quit()
 
