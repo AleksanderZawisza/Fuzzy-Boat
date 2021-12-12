@@ -9,6 +9,7 @@ def main_loop():
     run = True
 
     pygame.init()
+    pygame.display.set_caption('Fuzzy Boat')
     clock = pygame.time.Clock()
     pygame.key.set_repeat(200)
     size = (1024, 768)

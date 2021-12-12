@@ -69,7 +69,12 @@ def draw_goal(screen, goal_pos):
     # flag_img = pygame.transform.smoothscale(flag_img, (flag_size, flag_size*1.25))
     # screen.blit(flag_img, (goal_pos[0]-flag_size//2, goal_pos[1]-flag_size*1.25//2))
 
-    pygame.draw.circle(screen, (255, 0, 0), goal_pos, 5)
+    pygame.draw.circle(screen, (255, 0, 0), goal_pos, 10)
+    pygame.draw.circle(screen, (255, 255, 255), goal_pos, 8)
+    pygame.draw.circle(screen, (255, 0, 0), goal_pos, 6)
+    pygame.draw.circle(screen, (255, 255, 255), goal_pos, 4)
+    pygame.draw.circle(screen, (255, 0, 0), goal_pos, 2)
+
 
 
 def draw_info(screen, boat, goal_angle):
