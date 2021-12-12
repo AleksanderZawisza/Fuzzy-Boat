@@ -5,7 +5,7 @@ import math
 import numpy as np
 
 
-def draw_all(screen, boat, goal_pos=None, goal_angle=None):
+def draw_all(screen, boat, goal_pos=None, goal_angle=None, manual_goal_pos=None):
     draw_background(screen)
     # draw_trail(alpha_surf, boat)
     # alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
@@ -15,6 +15,8 @@ def draw_all(screen, boat, goal_pos=None, goal_angle=None):
     draw_info(screen, boat, goal_angle)
     if goal_pos:
         draw_goal(screen, goal_pos)
+    if manual_goal_pos:
+        draw_goal(screen, manual_goal_pos)
 
 
 def draw_rudder(screen, boat):

@@ -20,29 +20,35 @@ def main_loop():
     boat = Boat(info.current_w / 2, info.current_h / 2)
     goal_pos = None
     goal_angle = None
+    manual_goal_pos = None
     driver = BoatDriver()
 
     while run:
         boat.update()
-        draw_all(screen, boat, goal_pos, goal_angle)
+        draw_all(screen, boat, goal_pos, goal_angle, manual_goal_pos)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             handle_keystroke_event(event, boat)
 
-            if event.type == pygame.MOUSEBUTTONUP:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:  # left click
                     goal_pos = pygame.mouse.get_pos()
+                    manual_goal_pos= None
                 if event.button == 3:  # right click
                     goal_pos = None
                     goal_angle = None
+                    manual_goal_pos = None
+                if event.button == 2: # middle click
+                    goal_pos = None
+                    manual_goal_pos = pygame.mouse.get_pos()
 
         if goal_pos:
             goal_angle = calculate_goal_angle(boat, goal_pos)
             dist = calculate_goal_distance(boat, goal_pos)
             adjust_velocity(boat, dist)
             change = driver.rudder_change(goal_angle, -1 * boat.turn)
-            boat.rudder -= change
+            boat.rudder -= max(min(change, 2), -2) # plynnejsze obracanie sie steru
 
         pygame.display.update()
         clock.tick(100)
