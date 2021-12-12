@@ -90,7 +90,7 @@ def draw_goal(screen, goal_pos):
 def draw_info(screen, boat, goal_angle):
     COLOR = (255, 255, 255)
     font = pygame.font.SysFont("monospace", 18, bold=True)
-    text = font.render("Velocity: " + str(boat.vel), True, COLOR)
+    text = font.render("Velocity: " + str(round(boat.vel, 1)), True, COLOR)
     text_2 = font.render("Turn: " + str(round(boat.turn, 1)), True, COLOR)
     text_3 = font.render("Rudder: " + str(round(boat.rudder, 0)), True, COLOR)
     # text_4 = font.render("Heading: " + str(boat.heading), True, COLOR)
