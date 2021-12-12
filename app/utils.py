@@ -6,9 +6,9 @@ import math
 def handle_keystroke_event(event, boat):
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            boat.rudder += 2
+            boat.rudder += 5
         if event.key == pygame.K_RIGHT:
-            boat.rudder += -2
+            boat.rudder += -5
         if event.key == pygame.K_UP:
             boat.vel += 1
         if event.key == pygame.K_DOWN:
@@ -56,10 +56,9 @@ def calculate_goal_distance(boat, goal_pos):
     return dist
 
 
-def adjust_velocity(boat, dist):
-    if dist > 400:
-        boat.vel = 20
-    elif dist > 10:
-        boat.vel = round(dist / 20, 0)
+def adjust_velocity(boat, dist, angle):
+    print(dist)
+    if dist > 10:
+        boat.vel = round((dist**0.5 / 2) * (0.2 + 1 - (abs(angle)+1) / 163), 0) + 1
     else:
         boat.vel = 0

@@ -46,7 +46,7 @@ def main_loop():
         if goal_pos:
             goal_angle = calculate_goal_angle(boat, goal_pos)
             dist = calculate_goal_distance(boat, goal_pos)
-            adjust_velocity(boat, dist)
+            adjust_velocity(boat, dist, goal_angle)
             change = driver.rudder_change(goal_angle, -1 * boat.turn)
             boat.rudder -= max(min(change, 2), -2) # plynnejsze obracanie sie steru
 

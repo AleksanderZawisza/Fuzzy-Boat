@@ -53,10 +53,10 @@ class Boat:
 
         self.turn = self.turn * (self.vel / 200 + 0.90)
 
-        if self.vel == 0 and abs(self.turn) < 20:
+        if self.vel == 0:
             self.turn = 0
 
-        self.heading += self.turn / ((self.vel + 9) * 5)
+        self.heading += self.turn / ((self.vel + 10) * 4)
         self.turn = self.turn * 0.95
 
         self.pos_x = self.pos_x + self.vel * cos(radians(self.heading)) / 10
