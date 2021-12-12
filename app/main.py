@@ -1,7 +1,8 @@
 import pygame
 from drawing import draw_all
 from boat import Boat
-from utils import handle_keystroke_event, calculate_goal_angle, calculate_goal_distance, adjust_velocity
+from speed_driver import BoatSpeedDriver
+from utils import adjust_fuzzy_velocity, handle_keystroke_event, calculate_goal_angle, calculate_goal_distance, adjust_velocity
 from driver import BoatDriver
 
 
@@ -23,6 +24,7 @@ def main_loop():
     goal_angle = None
     manual_goal_pos = None
     driver = BoatDriver()
+    speed_driver = BoatSpeedDriver()
 
     while run:
         boat.update()
@@ -51,9 +53,14 @@ def main_loop():
         if goal_pos:
             goal_angle = calculate_goal_angle(boat, goal_pos)
             dist = calculate_goal_distance(boat, goal_pos)
-            adjust_velocity(boat, dist, goal_angle)
+
+            # adjust_velocity(boat, dist, goal_angle)
+
             change = driver.rudder_change(goal_angle, -1 * boat.turn)
             boat.rudder -= max(min(change, 2), -2)  # plynnejsze obracanie sie steru
+
+            speed = speed_driver.update_speed(dist, goal_angle)
+            adjust_fuzzy_velocity(boat, dist, speed)
 
         pygame.display.update()
         clock.tick(100)

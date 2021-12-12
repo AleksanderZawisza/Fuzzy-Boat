@@ -18,7 +18,7 @@ class Boat:
         self.heading = self.heading % 360
 
         max_rudder = 50
-        max_vel = 20
+        max_vel = 40
 
         if self.rudder > max_rudder:
             self.rudder = max_rudder
