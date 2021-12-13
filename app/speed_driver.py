@@ -24,7 +24,7 @@ class BoatSpeedDriver:
         distance['very far'] = fuzz.trapmf(distance.universe, [400, 800, 1000, 1000])
 
         angle['strong left'] = fuzz.trapmf(angle.universe, [-180, -180, -70, -20])
-        angle['left'] = fuzz.trimf(angle.universe,[-70, -20, 0])
+        angle['left'] = fuzz.trimf(angle.universe, [-70, -20, 0])
         angle['keep'] = fuzz.trapmf(angle.universe, [-20, -5, 5, 20])
         angle['right'] = fuzz.trimf(angle.universe, [0, 20, 70])
         angle['strong right'] = fuzz.trapmf(angle.universe, [20, 70, 180, 180])
@@ -86,7 +86,7 @@ class BoatSpeedDriver:
 
 if __name__ == "__main__":
     driver = BoatSpeedDriver()
-    distances = [0, 3,  15, 30, 50, 80, 400, 700, 1000, 1500, 800, 800]
+    distances = [0, 3, 15, 30, 50, 80, 400, 700, 1000, 1500, 800, 800]
     angles = [0, 10, -20, -160, -100, -120, 30, 50, -20, 40, 10, 20]
     for d, a in zip(distances, angles):
         print(d, a, driver.update_speed(d, a, False))

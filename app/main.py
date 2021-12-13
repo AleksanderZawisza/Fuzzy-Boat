@@ -2,7 +2,7 @@ import pygame
 from drawing import draw_all
 from boat import Boat
 from speed_driver import BoatSpeedDriver
-from utils import adjust_fuzzy_velocity, handle_keystroke_event, calculate_goal_angle, calculate_goal_distance, adjust_velocity
+from utils import adjust_fuzzy_velocity, handle_keystroke_event, calculate_goal_angle, calculate_goal_distance
 from driver import BoatDriver
 
 

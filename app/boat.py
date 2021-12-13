@@ -51,7 +51,7 @@ class Boat:
         elif self.turn < -50:
             self.turn = -50
 
-        self.turn = self.turn * (self.vel / 200 + 0.90)
+        self.turn = self.turn * min((self.vel / 200 + 0.90), 0.95)
 
         if self.vel == 0:
             self.turn = 0
