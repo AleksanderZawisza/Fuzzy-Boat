@@ -16,11 +16,11 @@ class BoatDriver:
             defuzzify_method = 'centroid'
         rudd_chng = ctrl.Consequent(np.arange(-20, 21, 1), 'rudder change', defuzzify_method=defuzzify_method)
 
-        des_dir['strong left'] = fuzz.trapmf(des_dir.universe, [-180, -180, -100, -30])
-        des_dir['left'] = fuzz.trimf(des_dir.universe, [-100, -30, 0])
-        des_dir['middle'] = fuzz.trapmf(des_dir.universe, [-30, -5, 5, 30])
-        des_dir['right'] = fuzz.trimf(des_dir.universe, [0, 30, 100])
-        des_dir['strong right'] = fuzz.trapmf(des_dir.universe, [30, 100, 180, 180])
+        des_dir['strong left'] = fuzz.trapmf(des_dir.universe, [-180, -180, -100, -25])
+        des_dir['left'] = fuzz.trimf(des_dir.universe, [-100, -25, 0])
+        des_dir['middle'] = fuzz.trapmf(des_dir.universe, [-25, -3, 3, 25])
+        des_dir['right'] = fuzz.trimf(des_dir.universe, [0, 25, 100])
+        des_dir['strong right'] = fuzz.trapmf(des_dir.universe, [25, 100, 180, 180])
 
         turn['left'] = fuzz.trapmf(turn.universe, [-50, -50, -20, 0])
         turn['neutral'] = fuzz.trimf(turn.universe, [-20, 0, 20])
