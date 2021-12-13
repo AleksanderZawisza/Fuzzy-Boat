@@ -14,6 +14,14 @@ class Boat:
         self.length = 100
         self.width = 38
 
+        self.boat_img = pygame.image.load('assets/boat_sprite.png')
+        self.boat_img = pygame.transform.smoothscale(self.boat_img, (self.length, self.width))
+
+        self.water_img_width = 450
+        self.water_img_height = 450
+        self.water_img = pygame.image.load('assets/water_sprite.jpg')
+        self.water_img = pygame.transform.scale(self.water_img, (self.water_img_width, self.water_img_height))
+
     def update(self):
         self.heading = self.heading % 360
 

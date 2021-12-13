@@ -3,11 +3,12 @@ from utils import rotate_pivot
 from math import cos, sin, radians
 
 
-def draw_all(screen, boat, alpha_surf, goal_pos=None, goal_angle=None, manual_goal_pos=None):
-    draw_background(screen)
-    # draw_trail(alpha_surf, boat)
-    # alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
-    # screen.blit(alpha_surf, (0, 0))
+def draw_all(screen, boat, alpha_surf=None, goal_pos=None, goal_angle=None, manual_goal_pos=None):
+    draw_background(screen, boat)
+    if alpha_surf:
+        draw_trail(alpha_surf, boat)
+        alpha_surf.fill((255, 255, 255, 248), special_flags=pygame.BLEND_RGBA_MULT)
+        screen.blit(alpha_surf, (0, 0))
     draw_boat(screen, boat)
     draw_rudder(screen, boat)
     draw_info(screen, boat, goal_angle)
@@ -26,13 +27,16 @@ def draw_rudder(screen, boat):
     pygame.draw.line(screen, 'white', rudder_origin, rudder_end, 4)
 
 
-def draw_background(screen):
+def draw_background(screen, boat):
     width = pygame.display.Info().current_w
     height = pygame.display.Info().current_h
-    img_width = 450
-    img_height = 450
-    water_img = pygame.image.load('assets/water_sprite.jpg')
-    water_img = pygame.transform.scale(water_img, (img_width, img_height))
+    # img_width = 450
+    # img_height = 450
+    # water_img = pygame.image.load('assets/water_sprite.jpg')
+    # water_img = pygame.transform.scale(water_img, (img_width, img_height))
+    water_img = boat.water_img
+    img_width = boat.water_img_width
+    img_height = boat.water_img_height
     i = 0
     j = 0
     screen.fill((0, 0, 0))
@@ -45,10 +49,10 @@ def draw_background(screen):
 
 
 def draw_boat(screen, boat):
-    boat_img = pygame.image.load('assets/boat_sprite.png')
-    boat_img = pygame.transform.smoothscale(boat_img, (boat.length, boat.width))
+    # boat_img = pygame.image.load('assets/boat_sprite.png')
+    # boat_img = pygame.transform.smoothscale(boat_img, (boat.length, boat.width))
 
-    boat_img, rect = rotate_pivot(boat_img, boat.heading, (boat.pos_x, boat.pos_y))
+    boat_img, rect = rotate_pivot(boat.boat_img, boat.heading, (boat.pos_x, boat.pos_y))
     # pygame.draw.rect(screen, 'yellow', rect)
     screen.blit(boat_img, rect)
 
