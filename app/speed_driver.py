@@ -29,9 +29,9 @@ class BoatSpeedDriver:
         angle['right'] = fuzz.trimf(angle.universe, [0, 20, 70])
         angle['strong right'] = fuzz.trapmf(angle.universe, [20, 70, 180, 180])
 
-        speed['small'] = fuzz.trapmf(speed.universe, [0, 0, 3, 10])
-        speed['medium'] = fuzz.trimf(speed.universe, [3, 10, 15])
-        speed['high'] = fuzz.trimf(speed.universe, [5, 15, 20])
+        speed['small'] = fuzz.trapmf(speed.universe, [0, 0, 3, 8])
+        speed['medium'] = fuzz.trimf(speed.universe, [3, 8, 15])
+        speed['high'] = fuzz.trimf(speed.universe, [8, 15, 20])
         speed['very high'] = fuzz.trapmf(speed.universe, [15, 20, 40, 40])
 
         rules = [ctrl.Rule(distance['very close'] & angle['strong left'], speed['small']),
