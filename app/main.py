@@ -64,7 +64,7 @@ def main_loop():
 
         pygame.display.update()
         clock.tick(100)
-        print(clock.get_fps())
+        # print(clock.get_fps())
 
     pygame.quit()
 
